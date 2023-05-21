@@ -20,11 +20,16 @@ function App() {
 	const [todo, setTodo] = useState(initialTodo);
 
 	const handleSetTodo = (e) => {
-		setTodo({
-			...todo,
+		// setTodo({
+		// 	...todo,
+		// 	[e.target.name]: e.target.value,
+		// 	id: todos.length + 1
+		// });
+		setTodo((currentTodo) => ({
+			...currentTodo,
 			[e.target.name]: e.target.value,
 			id: todos.length + 1
-		});
+		}));
 	};
 
 	const handleAddTodo = () => {
@@ -59,7 +64,12 @@ function App() {
 				value={todo?.todo_description}
 				onChange={handleSetTodo}
 			/>
-			<button onClick={handleAddTodo}>Add todo</button>
+			<button
+				disabled={todo?.todo_name === '' || todo?.todo_description === ''}
+				onClick={handleAddTodo}
+			>
+				Add todo
+			</button>
 			{todos &&
 				todos.map((todo, index) => (
 					<div key={index}>
@@ -79,7 +89,7 @@ function App() {
 			</button>
 			<br />
 			<br />
-			<MoreOnZustand />
+			{/* <MoreOnZustand /> */}
 		</div>
 	);
 }

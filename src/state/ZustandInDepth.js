@@ -4,7 +4,7 @@ import { devtools, persist } from 'zustand/middleware';
 
 const zustandStore = (set, get) => ({
 	toads: 0,
-	increaseToad: () => set(() => ({ toads: get().toads + 1 })),
+	increaseToad: () => set((state) => ({ toads: state.toads + 1 })),
 	decreaseToad: () => {
 		set(() => get().toads !== 0 && { toads: get().toads - 1 });
 		console.log(get().toads);
